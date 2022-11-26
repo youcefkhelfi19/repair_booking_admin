@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "762842355041",
+    "firebase_url": "https://portfolio-cfd46-default-rtdb.firebaseio.com",
+    "project_id": "portfolio-cfd46",
+    "storage_bucket": "portfolio-cfd46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762842355041:android:bb783713dcfde2ef076120",
+        "android_client_info": {
+          "package_name": "com.example.google_sin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762842355041-nh2t70baqb6nri9q1ufei9bc6kvernur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4J-wa9fBoeoiQXSh6nU1yh_wGGYN8yvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762842355041-nh2t70baqb6nri9q1ufei9bc6kvernur.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "762842355041-4cbl4ogqq5nb5hbvermnav0feamlfedh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.googleSin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762842355041:android:e73c61759456b575076120",
+        "android_client_info": {
+          "package_name": "com.example.repair_booking_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762842355041-pq0p0jvjbr95nbb5e4cvjpdodejad505.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.repair_booking_admin",
+            "certificate_hash": "1bda86f225cb556ed9b2283fed021a7932f37f97"
+          }
+        },
+        {
+          "client_id": "762842355041-nh2t70baqb6nri9q1ufei9bc6kvernur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4J-wa9fBoeoiQXSh6nU1yh_wGGYN8yvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762842355041-nh2t70baqb6nri9q1ufei9bc6kvernur.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "762842355041-4cbl4ogqq5nb5hbvermnav0feamlfedh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.googleSin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
