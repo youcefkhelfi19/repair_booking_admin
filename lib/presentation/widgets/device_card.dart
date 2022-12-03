@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -95,7 +94,7 @@ class DeviceCard extends StatelessWidget {
                               ),
                               child: Text(device.repairingStatus.tr,style: const TextStyle(color: Colors.white,fontSize: 12),)),
                           const Spacer(),
-                          Text('${handleDate(device.dateTime)}',style: const TextStyle(color: Colors.grey,fontSize: 10),)
+                          Text('${handleDate()}',style: const TextStyle(color: Colors.grey,fontSize: 10),)
 
                         ],
                       ),
@@ -111,8 +110,8 @@ class DeviceCard extends StatelessWidget {
       ),
     );
   }
-  handleDate(Timestamp postedDateTimeStamp){
-    var postIn = postedDateTimeStamp.toDate();
+  handleDate(){
+    var postIn = DateTime.parse(device.dateTime);
     String postedDate = '${postIn.day}.${postIn.month}.${postIn.year}';
     return postedDate;
 

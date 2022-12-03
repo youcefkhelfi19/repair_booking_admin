@@ -11,8 +11,7 @@ class PdfReceiptApi {
   static Future<File> generate(
       {required Device device, required Store store}) async {
     final pdf = pw.Document();
-    Timestamp postedDateTimeStamp = device.dateTime;
-    var postIn = postedDateTimeStamp.toDate();
+    var postIn = DateTime.parse(device.dateTime);
     String postedDate = '${postIn.year}.${postIn.month}.${postIn.day}';
     String postedTime = '${postIn.hour}: ${postIn.minute}';
     var data = await rootBundle.load("assets/fonts/Montserrat-Medium.ttf");

@@ -293,11 +293,9 @@ class _DeviceDetailsState extends State<DeviceDetails> {
               radioButtonValue: (value) {
                 firebaseController.updateField(
                     fieldValue: value.toString(),
-                    id: widget.device.deviceId,
+                    device: widget.device,
                     field: 'repairing').then((response){
                   if(response == true){
-                    repairingStatus =='Completed' || repairingStatus == 'Cancelled'?
-                    NotificationsService().sendNotificationViaTopic(device: widget.device, status: repairingStatus):null;
 
                     setState(() {
                       repairingStatus = value.toString();
@@ -305,7 +303,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                     });
                     repairingStatus == 'Completed'?firebaseController.updateField(
                         fieldValue: 'In Store',
-                        id: widget.device.deviceId,
+                        device: widget.device,
                         field: 'storing').then((response){
                       if(response == true){
                                                     setState(() {
@@ -358,7 +356,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                       }else{
                         firebaseController.updateField(
                             fieldValue: value.toString(),
-                            id: widget.device.deviceId,
+                            device: widget.device,
                             field: 'storing').then((response){
                           if(response == true){
 
@@ -529,8 +527,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
             );
   }
   handleDate() {
-    Timestamp postedDateTimeStamp = widget.device.dateTime;
-    var postIn = postedDateTimeStamp.toDate();
+    var postIn = DateTime.parse(widget.device.dateTime);
     postedDate = '${postIn.year}.${postIn.month}.${postIn.day}';
     postedTime = '${postIn.hour}: ${postIn.minute}';
   }
@@ -556,7 +553,8 @@ class _DeviceDetailsState extends State<DeviceDetails> {
         hint: 'reason'.tr,
         onTap:(){
           firebaseController.updateField(
-              fieldValue:cancelledNoteController.text, id: widget.device.deviceId, field: 'cancelled_note');
+              fieldValue:cancelledNoteController.text,device: widget.device,
+              field: 'cancelled_note');
 
           Navigator.pop(context);
           setState(() {
@@ -572,9 +570,11 @@ class _DeviceDetailsState extends State<DeviceDetails> {
         onTap:(){
 
           firebaseController.updateField(
-              fieldValue:returnedNoteController.text, id: widget.device.deviceId, field: 'returned_note').
+              fieldValue:returnedNoteController.text,device: widget.device,
+               field: 'returned_note').
           whenComplete(() => firebaseController.updateField(
-              fieldValue:'Pending', id: widget.device.deviceId, field: 'repairing')).then((value) {
+              fieldValue:'Pending',  device: widget.device,
+              field: 'repairing')).then((value) {
             setState(() {
               repairingStatus = 'Pending';
             });
@@ -591,7 +591,8 @@ class _DeviceDetailsState extends State<DeviceDetails> {
         hint: 'note'.tr,
         onTap:(){
             firebaseController.updateField(
-                fieldValue:progressNoteController.text, id: widget.device.deviceId, field: 'progress_note');
+                fieldValue:progressNoteController.text, device: widget.device,
+                field: 'progress_note');
             Navigator.pop(context);
             setState(() {
 

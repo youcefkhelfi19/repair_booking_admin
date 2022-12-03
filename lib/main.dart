@@ -22,8 +22,8 @@ void main()async {
   Map<String, Map<String, String>> languages =await deps.init();
   await GetStorage.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-  //await FirebaseMessaging.instance.getInitialMessage();
-  await FirebaseMessaging.instance.subscribeToTopic("flutter");
+  await FirebaseMessaging.instance.getInitialMessage();
+  await FirebaseMessaging.instance.subscribeToTopic("admin");
 
   FirebaseMessaging.onBackgroundMessage(NotificationsService().firebaseMessagingBackgroundHandler);
   runApp( RepairBooking(

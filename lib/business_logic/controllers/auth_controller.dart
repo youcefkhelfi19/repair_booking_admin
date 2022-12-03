@@ -5,8 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../helper/app_routes.dart';
-import '../../services/firebase_notification.dart';
-class AuthController extends GetxController with NotificationsService{
+class AuthController extends GetxController {
   bool isVisible = false;
   bool isAccepted = false;
   RxBool isLoading = false.obs;
@@ -32,7 +31,6 @@ class AuthController extends GetxController with NotificationsService{
          storageBox.write('username', value.user!.displayName!);
          storageBox.write('photo', value.user!.photoURL!);
          storageBox.write('email', value.user!.email!);
-         getToken(value.user!.uid);
          Get.offNamed(dashboardScreen);
          Get.snackbar('Welcome', 'Mr.${value.user!.displayName}',
              snackPosition: SnackPosition.BOTTOM,

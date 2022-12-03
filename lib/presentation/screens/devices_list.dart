@@ -186,20 +186,21 @@ class _DevicesListState extends State<DevicesList> with TickerProviderStateMixin
                                     startActionPane:  ActionPane(
                                       motion: const ScrollMotion(),
                                       dismissible: DismissiblePane(onDismissed: () {
-                                        firebaseController.updateField(fieldValue:device.repairingStatus == 'Pending'? 'In Progress':device.repairingStatus =='In Progress'?'Completed':'Cancelled', id:device.deviceId, field: 'repairing' );
+                                        firebaseController.updateField(fieldValue:device.repairingStatus == 'Pending'? 'In Progress':device.repairingStatus =='In Progress'?'Completed':'Cancelled',
+                                            device:device, field: 'repairing' );
 
                                       }),
                                       children:  [
 
                                         device.repairingStatus == 'Pending'?StatusIconBtn(
-                                          deviceId:device.deviceId ,
+                                          device:device ,
                                           iconData: Ionicons.checkmark_circle_outline,
                                           firebaseController: firebaseController,
                                           value: 'Completed',): const Expanded(
                                             flex: 1,
                                             child: SizedBox(width: 0.0,)),
                                         device.repairingStatus == 'Pending' || device.repairingStatus == 'In Progress'?  StatusIconBtn(
-                                          deviceId:device.deviceId ,
+                                          device:device,
                                           iconData: Ionicons.close_circle_outline,
                                           firebaseController: firebaseController,
                                           value: 'Cancelled',):const Expanded(

@@ -101,5 +101,6 @@
   "are_you_sure_you_want_to_delete_this_device": "Are you sure you want to delete this device",
   "clear_list": "Clear list",
   "are_you_sure_you_want_to_clear_this_list": "Are you sure you want to clear this list",
-  "no_accessories": "No Accessories"
+  "no_accessories": "No Accessories",
+  "has_been": " has been "
 }

@@ -45,7 +45,7 @@ class Device {
   String phone;
   String address;
   String uploadedBy;
-  Timestamp dateTime;
+  String dateTime;
   String repairingPrice;
   String completedNote;
   String storingStatus;
@@ -96,7 +96,7 @@ class Device {
     "serial":serial,
     "address" : address,
     "by" : uploadedBy,
-    "date": dateTime.toString(),
+    "date": dateTime,
     "storing":storingStatus,
     "completed_note":completedNote,
     "accessories":accessories,

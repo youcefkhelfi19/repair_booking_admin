@@ -12,12 +12,14 @@ import 'package:uuid/uuid.dart';
 import '../../helper/app_routes.dart';
 import '../../models/device_model.dart';
 import '../../models/store_model.dart';
+import '../../presentation/screens/device_details.dart';
 import '../../presentation/widgets/alert_dialog.dart';
 import '../../presentation/widgets/toast.dart';
+import '../../services/firebase_notification.dart';
 import '../../services/invoice_service/file_handle_api.dart';
 import '../../services/invoice_service/pdf_invoice_api.dart';
 
-class FirebaseController extends GetxController {
+class FirebaseController extends GetxController with NotificationsService {
   GetStorage storage = GetStorage();
   late firebase_storage.Reference ref;
   RxBool isLoading = false.obs;
@@ -66,8 +68,7 @@ class FirebaseController extends GetxController {
               imagesLinks.add(value),
             });
 
-          //  storage.write('device_id', deviceId);
-           // storage.write('images', imagesLinks);
+
           });
 
         }
@@ -100,7 +101,7 @@ class FirebaseController extends GetxController {
         images: imagesLinks,
         address: address,
         phone: phone,
-        dateTime: Timestamp.now(),
+        dateTime: DateTime.now().toString(),
         repairingStatus: "Pending",
         issue: issue,
         ownerName: ownerName,
@@ -187,18 +188,47 @@ class FirebaseController extends GetxController {
       }
     });
   }
-
-
-
-
-  Future<bool> updateField({required String fieldValue, required String id,required String field}) async {
+   getDeviceById({required String id}) {
+   late Device device ;
+    var snapshot = firebaseFirestore.collection('devices').doc(id);
+    snapshot.get().then((value){
+       device = Device(
+          deviceId: value.get('id'),
+          brand: value.get('brand'),
+          model: value.get('model'),
+          repairingStatus: value.get('repairing'),
+          description: value.get('description'),
+          images: value.get('images'),
+          address: value.get('address'),
+          phone: value.get('phone'),
+          serial: value.get('serial'),
+          dateTime: value.get('date'),
+          issue: value.get('issue'),
+          ownerName: value.get('owner'),
+          security: value.get('security'),
+          uploadedBy: value.get('by'),
+          storingStatus: value.get('storing'),
+          completedNote: value.get('completed_note'),
+          repairingPrice: value.get('price'),
+          accessories: value.get('accessories'),
+          cancelledNote: value.get('cancelled_note'),
+          inProgressNote: value.get('progress_note'),
+          returnedNote: value.get('returned_note')
+      );
+    }).whenComplete(() => Get.to(()=>DeviceDetails(device: device))
+    );
+  }
+  Future<bool> updateField({required String fieldValue, required Device device,required String field}) async {
     try{
       await  firebaseFirestore
           .collection('devices')
-          .doc(id)
+          .doc(device.deviceId)
           .update({field: fieldValue});
       update();
       showToast(color: Colors.green, msg: 'update_success'.tr);
+      fieldValue =='Completed' || fieldValue == 'Cancelled'?
+      sendNotificationViaTopic(deviceId: device.deviceId,
+          status: fieldValue, model: device.model, ):null;
 
       return true;
     }catch(e){

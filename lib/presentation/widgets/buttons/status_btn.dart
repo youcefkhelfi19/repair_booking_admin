@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:repair_booking_admin/models/device_model.dart';
 
 import '../../../business_logic/controllers/firebase_db_controller.dart';
 import '../../../helper/app_colors.dart';
 
 class StatusIconBtn extends StatelessWidget {
   const  StatusIconBtn({
-    Key? key, required this.value, required this.iconData, required this.deviceId, required this.firebaseController,
+    Key? key, required this.value, required this.iconData, required this.device, required this.firebaseController,
   }) : super(key: key);
   final String value;
   final IconData iconData;
-  final String deviceId ;
+  final Device device ;
   final FirebaseController firebaseController ;
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class StatusIconBtn extends StatelessWidget {
       flex: 1,
       child: GestureDetector(
         onTap: (){
-          firebaseController.updateField(fieldValue: value, id:deviceId, field: 'repairing' );
+          firebaseController.updateField(fieldValue: value, device:device, field: 'repairing' );
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

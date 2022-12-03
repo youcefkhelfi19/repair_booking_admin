@@ -99,5 +99,6 @@
   "are_you_sure_you_want_to_delete_this_device": "Voulez-vous vraiment supprimer cet appareil ?",
   "clear_list": "Effacer la liste",
   "are_you_sure_you_want_to_clear_this_list": "Voulez-vous vraiment effacer cette liste ?",
-  "no_accessories": "Aucun accessoire"
+  "no_accessories": "Aucun accessoire",
+  "has_been": " a été "
 }
