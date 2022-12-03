@@ -10,15 +10,8 @@ import 'package:http/http.dart' as http;
 
 import '../business_logic/controllers/firebase_db_controller.dart';
 import '../firebase_options.dart';
-import '../helper/global_constants.dart';
-import '../models/device_model.dart';
-import '../presentation/screens/device_details.dart';
 class NotificationsService{
   FirebaseDatabase database = FirebaseDatabase.instance;
-  Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message)async{
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
-
-  }
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   void requestPermission()async{
     FirebaseMessaging  messaging = FirebaseMessaging.instance;
@@ -38,30 +31,6 @@ class NotificationsService{
     }else{
       print("declined");
     }
-  }
-  getToken(String idToken)async{
-    await FirebaseMessaging.instance.getToken().then((value){
-      saveTokens(idToken,value!);
-    });
-  }
-  saveTokens(String idToken ,String dToken)async{
-    try{
-
-      DatabaseReference ref = database.ref("tokens");
-      await ref.set(
-          {
-            idToken: dToken,
-
-          }
-      );
-
-    }catch(e){
-      return e;
-    }
-  }
-  saveToken(String token)async{
-    await FirebaseFirestore.instance.collection("tokens").doc("admin").set(
-        {"token": token});
   }
   initInfo(){
     var initializationSettings = const InitializationSettings(android: AndroidInitializationSettings('@mipmap/ic_launcher'));

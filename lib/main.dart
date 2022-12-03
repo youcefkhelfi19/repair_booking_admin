@@ -15,6 +15,13 @@ import 'helper/app_routes.dart';
 import 'helper/app_themes.dart';
 import 'helper/global_constants.dart';
 import 'services/firebase_notification.dart';
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message)async{
+  try{
+
+  }catch(e){
+    print('excepton $e');
+  }
+}
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +32,7 @@ void main()async {
   await FirebaseMessaging.instance.getInitialMessage();
   await FirebaseMessaging.instance.subscribeToTopic("admin");
 
-  FirebaseMessaging.onBackgroundMessage(NotificationsService().firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   runApp( RepairBooking(
     languages: languages,
   ));
