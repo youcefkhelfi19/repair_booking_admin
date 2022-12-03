@@ -104,8 +104,6 @@ class DashboardScreen extends StatelessWidget {
                   image: 'delivered',
                   onTap: () {  Get.to(()=>const DeliveredDevices());},
                 ),
-                 TextButton(onPressed: ()async{
-                  }, child: Text('Send'))
               ],
             ),
             const Spacer()
