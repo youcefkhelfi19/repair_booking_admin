@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../business_logic/controllers/real_time_db_controller.dart';
 import '../../helper/app_colors.dart';
 import '../../helper/app_routes.dart';
 
@@ -16,10 +16,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
+saveTopic()async{
+  try{
+    await FirebaseMessaging.instance.subscribeToTopic("admin");
+    print('sub');
+  }catch(e){
+    print(e);
+  }
+}
   @override
   void initState() {
-
+  saveTopic();
     nextScreen();
     super.initState();
   }

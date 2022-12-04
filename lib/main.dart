@@ -14,7 +14,6 @@ import 'firebase_options.dart';
 import 'helper/app_routes.dart';
 import 'helper/app_themes.dart';
 import 'helper/global_constants.dart';
-import 'services/firebase_notification.dart';
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message)async{
   try{
 
@@ -30,8 +29,6 @@ void main()async {
   await GetStorage.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
   await FirebaseMessaging.instance.getInitialMessage();
-  await FirebaseMessaging.instance.subscribeToTopic("admin");
-
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   runApp( RepairBooking(
     languages: languages,
